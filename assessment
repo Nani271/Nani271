@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>KBC Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="question-container">
+        <h1 id="question"></h1>
+        <img id="qr-code" src="your_qr_code.png">
+    </div>
+    <div id="answer-container">
+        <p id="answer-message"></p>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html> 
+
+#css code 
+#question-container {
+    text-align: center;
+}
+
+#qr-code {
+    width: 200px;
+    height: 200px;
+}
+
+#answer-container {
+    display: none;
+    text-align: center;
+} 
+
+#js 
+
+function generateQRCode(question) {
+    
+}
+
+
+const questions = [
+    {
+        question: "What is the capital of India?",
+        answer: "New Delhi"
+    },
+    
+];
+
+let currentQuestionIndex = 0;
+
+function displayQuestion() {
+    const question = questions[currentQuestionIndex];
+    document.getElementById("question").textContent = question.question;
+    document.getElementById("qr-code").src = generateQRCode(question.question);
+    document.getElementById("answer-container").style.display = "none";
+}
+
+function checkAnswer(submittedAnswer) {
+    const correctAnswer = questions[currentQuestionIndex].answer;
+    if (submittedAnswer.toLowerCase() === correctAnswer.toLowerCase()) {
+        document.getElementById("answer-message").textContent = "Congratulations! You answered correctly.";
+        currentQuestionIndex++;
+        if (currentQuestionIndex < questions.length) {
+            displayQuestion();
+        } else {
+            // Game over logic
+        }
+    } else {
+        // Handle incorrect answer 
+    }
+}
+
